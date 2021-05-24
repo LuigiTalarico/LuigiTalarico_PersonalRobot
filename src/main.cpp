@@ -11,7 +11,6 @@
 void signalHandler(int signum)
 {
     eeros::safety::SafetySystem::exitHandler();
-    eeros::sequencer::Sequencer::instance().abort();
 }
 
 int main(int argc, char **argv)
@@ -32,7 +31,7 @@ int main(int argc, char **argv)
     log.info() << "Initializing safety system...";
     MyRobotSafetyProperties sp(cs, dt);
     eeros::safety::SafetySystem ss(sp, dt);
-    cs.timedomain.registerSafetyEvent(ss, sp.doSystemOff); // fired if timedomain fails to run properly
+    cs.timedomain.registerSafetyEvent(ss, sp.abort); // fired if timedomain fails to run properly
     signal(SIGINT, signalHandler);
 
     log.info() << "Initializing sequencer...";
