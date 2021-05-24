@@ -30,6 +30,8 @@ ControlSystem::ControlSystem(double dt)
     timedomain.addblock(Ewl);
     timedomain.addblock(Ewr);
     timedomain.addBlock(myConstant);
+    timedomain.addBlock(Mwl);
+    timedomain.addBlock(Mwr);
     //(LT eliminate) timedomain.addBlock(myGain);
 
     // Add timedomain to executor
